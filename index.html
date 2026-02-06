@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitlon - Cryptocurrency Trading Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Bitlon</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Trade Crypto with Confidence</h1>
+                <p>Secure, fast, and user-friendly cryptocurrency trading platform</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-secondary">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="crypto-icon">₿</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <!-- <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Bitlon?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Trading</h3>
+                    <p>Bank-level security with 2FA and cold storage protection</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Execute trades in milliseconds with our advanced engine</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Low Fees</h3>
+                    <p>Competitive fees starting at 0.1% for makers</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Trading</h3>
+                    <p>Trade on the go with our mobile apps</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>100+ Coins</h3>
+                    <p>Access to major cryptocurrencies and altcoins</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>24/7 Support</h3>
+                    <p>Our AI assistant is always here to help you</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- About Section -->
+    <!-- <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Bitlon</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Your Trusted Crypto Partner</h3>
+                    <p>Bitlon is a leading cryptocurrency trading platform designed for both beginners and professional traders. We provide a secure, reliable, and user-friendly environment for trading digital assets.</p>
+                    <p>With advanced security features, competitive fees, and 24/7 AI-powered customer support, we make cryptocurrency trading accessible to everyone.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>$1B+</h3>
+                        <p>Trading Volume</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100K+</h3>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100+</h3>
+                        <p>Cryptocurrencies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <!-- <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>📧 Email: support@bitlon.com</p>
+                    <p>💬 Live Chat: Available 24/7</p>
+                    <p>🌐 Website: https://bitlon.com</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <!-- <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Bitlon. All rights reserved.</p>
+            <p>Powered by AI Customer Support</p>
+        </div>
+    </footer> -->
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget">
+        <button id="chatbot-toggle" class="chat-toggle">
+            <span class="chat-icon">💬</span>
+            <span class="close-icon">✕</span>
+        </button>
+        <div id="chatbot-container" class="chatbot-container">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">B</div>
+                <div class="chatbot-info">
+                    <h3>Bitlon Support</h3>
+                    <p class="status">🟢 Online</p>
+                </div>
+                <button class="minimize-btn" onclick="toggleChatbot()">−</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-bubble">
+                        �� Hi! I'm your Bitlon AI assistant. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-suggestions" id="chatbot-suggestions">
+                <button class="suggestion" onclick="sendSuggestion('How to deposit funds?')">How to deposit?</button>
+                <button class="suggestion" onclick="sendSuggestion('What are the trading fees?')">Trading fees?</button>
+                <button class="suggestion" onclick="sendSuggestion('How to enable 2FA?')">Enable 2FA?</button>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chat-input" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+                <button onclick="sendMessage()" class="send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
