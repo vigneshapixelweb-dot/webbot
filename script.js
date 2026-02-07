@@ -12,6 +12,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Secure Trading link: open in same tab on mobile, new tab on desktop.
+const isMobileDevice = () => /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+document.querySelectorAll('.secure-trading-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+        if (!url) {
+            return;
+        }
+        if (isMobileDevice()) {
+            window.location.href = url;
+        } else {
+            window.open(url, '_blank', 'noopener');
+        }
+    });
+});
+
 // Form submission
 document.querySelector('.contact-form form').addEventListener('submit', function(e) {
     e.preventDefault();
