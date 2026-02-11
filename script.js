@@ -17,16 +17,23 @@ const isMobileDevice = () => /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.use
 
 document.querySelectorAll('.secure-trading-link').forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
         const url = link.getAttribute('href');
         if (!url) {
             return;
         }
         if (isMobileDevice()) {
+            const iosAppLink = link.getAttribute('data-ios-app');
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && iosAppLink) {
+                e.preventDefault();
+                window.location.href = iosAppLink;
+                return;
+            }
+            e.preventDefault();
             window.location.href = url;
-        } else {
-            window.open(url, '_blank', 'noopener');
+            return;
         }
+        e.preventDefault();
+        window.open(url, '_blank', 'noopener');
     });
 });
 
