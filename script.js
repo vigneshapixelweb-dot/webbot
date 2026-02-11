@@ -17,15 +17,47 @@ const isMobileDevice = () => /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.use
 
 document.querySelectorAll('.secure-trading-link').forEach(link => {
     link.addEventListener('click', (e) => {
-        const iosAppLink = link.getAttribute('data-ios-app');
+        const appLink = link.getAttribute('data-ios-app');
+        const iosStore = link.getAttribute('data-ios-store');
+        const androidStore = link.getAttribute('data-android-store');
         if (!isMobileDevice()) {
             e.preventDefault();
+            const lines = ['This feature is available on mobile only.'];
+            if (iosStore) {
+                lines.push('iOS: ' + iosStore);
+            }
+            if (androidStore) {
+                lines.push('Android: ' + androidStore);
+            }
+            alert(lines.join('\n'));
             return;
         }
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && iosAppLink) {
-            e.preventDefault();
-            window.location.href = iosAppLink;
+        if (!appLink) {
+            return;
         }
+        e.preventDefault();
+        let didHide = false;
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const storeUrl = isIOS ? iosStore : androidStore;
+        const timeoutId = storeUrl
+            ? window.setTimeout(() => {
+                  if (!didHide) {
+                      window.location.href = storeUrl;
+                  }
+              }, 1500)
+            : null;
+
+        window.location.href = appLink;
+        window.addEventListener(
+            'pagehide',
+            () => {
+                didHide = true;
+                if (timeoutId) {
+                    window.clearTimeout(timeoutId);
+                }
+            },
+            { once: true }
+        );
     });
 });
 
