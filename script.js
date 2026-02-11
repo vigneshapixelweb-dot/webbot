@@ -17,23 +17,15 @@ const isMobileDevice = () => /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.use
 
 document.querySelectorAll('.secure-trading-link').forEach(link => {
     link.addEventListener('click', (e) => {
-        const url = link.getAttribute('href');
-        if (!url) {
-            return;
-        }
-        if (isMobileDevice()) {
-            const iosAppLink = link.getAttribute('data-ios-app');
-            if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && iosAppLink) {
-                e.preventDefault();
-                window.location.href = iosAppLink;
-                return;
-            }
+        const iosAppLink = link.getAttribute('data-ios-app');
+        if (!isMobileDevice()) {
             e.preventDefault();
-            window.location.href = url;
             return;
         }
-        e.preventDefault();
-        window.open(url, '_blank', 'noopener');
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && iosAppLink) {
+            e.preventDefault();
+            window.location.href = iosAppLink;
+        }
     });
 });
 
