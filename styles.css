@@ -148,6 +148,15 @@ body {
     color: var(--text);
 }
 
+.ios-app-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ios-app-link:hover {
+    text-decoration: underline;
+}
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -30,6 +30,39 @@ document.querySelectorAll('.secure-trading-link').forEach(link => {
     });
 });
 
+// "Why Choose Bitlon?" link: attempt to open the iOS app via deep link.
+const iosAppLink = document.querySelector('.ios-app-link');
+if (iosAppLink) {
+    iosAppLink.addEventListener('click', (e) => {
+        const url = iosAppLink.getAttribute('href');
+        if (!url) {
+            return;
+        }
+        e.preventDefault();
+        const fallback = iosAppLink.getAttribute('data-ios-fallback');
+        let didHide = false;
+        const timeoutId = fallback
+            ? window.setTimeout(() => {
+                  if (!didHide) {
+                      window.location.href = fallback;
+                  }
+              }, 1500)
+            : null;
+
+        window.location.href = url;
+        window.addEventListener(
+            'pagehide',
+            () => {
+                didHide = true;
+                if (timeoutId) {
+                    window.clearTimeout(timeoutId);
+                }
+            },
+            { once: true }
+        );
+    });
+}
+
 // Form submission
 document.querySelector('.contact-form form').addEventListener('submit', function(e) {
     e.preventDefault();
