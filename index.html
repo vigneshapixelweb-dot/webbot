@@ -172,6 +172,12 @@
                 <button class="suggestion" onclick="sendSuggestion('What are the trading fees?')">Trading fees?</button>
                 <button class="suggestion" onclick="sendSuggestion('How to enable 2FA?')">Enable 2FA?</button>
             </div>
+            <div class="ticket-panel" id="ticket-panel">
+                <div class="ticket-title">Not satisfied with the last answer?</div>
+                <input type="text" id="ticket-summary" placeholder="Issue summary (optional)">
+                <button class="ticket-btn" onclick="raiseTicket()">Create Ticket</button>
+                <div class="ticket-status" id="ticket-status"></div>
+            </div>
             <div class="chatbot-input">
                 <input type="text" id="chat-input" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
                 <button onclick="sendMessage()" class="send-btn">➤</button>
