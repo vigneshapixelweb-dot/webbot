@@ -158,7 +158,25 @@
                     <h3>Bitlon Support</h3>
                     <p class="status">🟢 Online</p>
                 </div>
-                <button class="minimize-btn" onclick="toggleChatbot()">−</button>
+                <div class="chatbot-actions">
+                    <button id="chatbot-ticket-btn" class="header-icon-btn" onclick="toggleTicketCenter()" title="My Tickets" aria-label="My Tickets">
+                        <span class="ticket-btn-icon" aria-hidden="true">🎫</span>
+                        <span class="ticket-btn-label">Tickets</span>
+                    </button>
+                    <button class="minimize-btn" onclick="toggleChatbot()">−</button>
+                </div>
+            </div>
+            <div id="ticket-center" class="ticket-center hidden">
+                <div class="ticket-center-header">
+                    <button id="ticket-center-back" class="ticket-center-btn hidden" onclick="backToTicketList()">←</button>
+                    <div id="ticket-center-title" class="ticket-center-title">My Tickets</div>
+                    <button class="ticket-center-btn" onclick="refreshTicketCenter()">↻</button>
+                </div>
+                <div id="ticket-center-content" class="ticket-center-content"></div>
+                <div id="ticket-center-chat-input" class="ticket-center-chat-input hidden">
+                    <input type="text" id="ticket-chat-input" placeholder="Type message to support..." onkeypress="handleTicketChatKeyPress(event)">
+                    <button onclick="sendTicketMessage()" class="send-btn">➤</button>
+                </div>
             </div>
             <div class="chatbot-messages" id="chatbot-messages">
                 <div class="message bot">
@@ -172,13 +190,16 @@
                 <button class="suggestion" onclick="sendSuggestion('What are the trading fees?')">Trading fees?</button>
                 <button class="suggestion" onclick="sendSuggestion('How to enable 2FA?')">Enable 2FA?</button>
             </div>
+            <div class="support-request-row hidden" id="support-request-row">
+                <button class="support-request-btn" onclick="requestSupport()">Need Support</button>
+            </div>
             <div class="ticket-panel" id="ticket-panel">
                 <div class="ticket-title">Not satisfied with the last answer?</div>
                 <input type="text" id="ticket-summary" placeholder="Issue summary (optional)">
                 <button class="ticket-btn" onclick="raiseTicket()">Create Ticket</button>
                 <div class="ticket-status" id="ticket-status"></div>
             </div>
-            <div class="chatbot-input">
+            <div class="chatbot-input" id="chatbot-input-row">
                 <input type="text" id="chat-input" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
                 <button onclick="sendMessage()" class="send-btn">➤</button>
             </div>
