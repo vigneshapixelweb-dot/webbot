@@ -426,6 +426,38 @@ async function loadTicketList(showLoading = false) {
     }
 }
 
+function syncTicketInList(ticket) {
+    if (!ticket || !ticket.ticketCode) return;
+
+    const updatedSummary = {
+        ticketCode: ticket.ticketCode,
+        userId: ticket.userId || userId,
+        source: ticket.source || 'website',
+        status: ticket.status || 'open',
+        issueSummary: ticket.issueSummary || ticket.lastUserMessage || 'No issue summary',
+        lastUserMessage: ticket.lastUserMessage || '',
+        lastAiMessage: ticket.lastAiMessage || '',
+        createdAt: ticket.createdAt || null,
+        updatedAt: ticket.updatedAt || new Date().toISOString(),
+    };
+
+    const index = userTickets.findIndex((item) => item.ticketCode === updatedSummary.ticketCode);
+    if (index >= 0) {
+        userTickets[index] = {
+            ...userTickets[index],
+            ...updatedSummary,
+        };
+    } else {
+        userTickets.unshift(updatedSummary);
+    }
+
+    userTickets.sort((a, b) => {
+        const aTime = new Date(a.updatedAt || 0).getTime();
+        const bTime = new Date(b.updatedAt || 0).getTime();
+        return bTime - aTime;
+    });
+}
+
 function renderTicketList() {
     const content = document.getElementById('ticket-center-content');
     if (!content) return;
@@ -576,7 +608,7 @@ async function sendTicketMessage() {
         selectedTicket = data.ticket;
         input.value = '';
         renderTicketDetail();
-        await loadTicketList(false);
+        syncTicketInList(data.ticket);
     } catch (error) {
         console.error('Ticket chat send error:', error);
         alert(error.message || 'Unable to send message right now.');
