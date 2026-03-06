@@ -40,6 +40,15 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function formatTicketMessage(text) {
+    const normalized = String(text || '')
+        .replace(/\r\n/g, '\n')
+        .trim()
+        .replace(/\n{3,}/g, '\n\n');
+
+    return escapeHtml(normalized).replace(/\n/g, '<br>');
+}
+
 function formatDate(value) {
     if (!value) return '-';
     const parsed = new Date(value);
@@ -498,7 +507,7 @@ function renderTicketDetail() {
                     return `
                         <div class="ticket-thread-msg ${role}">
                             <div class="ticket-thread-role">${roleLabel}</div>
-                            <div>${escapeHtml(message.content || '')}</div>
+                            <div class="ticket-thread-text">${formatTicketMessage(message.content)}</div>
                             <div class="ticket-thread-time">${escapeHtml(formatDate(message.timestamp))}</div>
                         </div>
                     `;
@@ -513,6 +522,10 @@ function renderTicketDetail() {
     } else {
         chatInputRow.classList.remove('hidden');
     }
+
+    requestAnimationFrame(() => {
+        content.scrollTop = content.scrollHeight;
+    });
 }
 
 function backToTicketList() {

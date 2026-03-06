@@ -73,9 +73,17 @@ body {
 
 .hero .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: 4rem;
     align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 560px;
 }
 
 .hero-content h1 {
@@ -121,12 +129,14 @@ body {
 
 .hero-image {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 
 .crypto-icon {
     font-size: 200px;
+    line-height: 1;
+    display: block;
     animation: float 3s ease-in-out infinite;
 }
 
@@ -465,6 +475,7 @@ body {
     display: flex;
     flex-direction: column;
     background: #f8fafc;
+    min-height: 0;
 }
 
 .ticket-center-header {
@@ -498,6 +509,7 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 10px;
+    min-height: 0;
 }
 
 .ticket-loading,
@@ -574,6 +586,12 @@ body {
     padding: 9px;
     font-size: 12px;
     line-height: 1.35;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.ticket-thread-text {
+    white-space: normal;
 }
 
 .ticket-thread-msg.user {
@@ -823,19 +841,39 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero {
+        padding: 72px 0;
+    }
+
     .hero .container {
         grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
     }
-    
+
+    .hero-content {
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-image {
+        justify-content: center;
+    }
+
     .crypto-icon {
         font-size: 100px;
     }
-    
+
     .about-content,
     .contact-content {
         grid-template-columns: 1fr;
     }
-    
+
     .chatbot-container {
         width: calc(100vw - 40px);
         height: calc(100vh - 140px);
